@@ -12,6 +12,7 @@ public class App {
 
 		LinkedListNode retNode = addLists(l1, l2, 0);
 		printReverseLinkedList(retNode);
+
 	}
 
 	private static void printReverseLinkedList(LinkedListNode root) {

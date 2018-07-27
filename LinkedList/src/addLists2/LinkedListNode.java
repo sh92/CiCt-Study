@@ -1,8 +1,8 @@
-package addLists;
+package addLists2;
 
 public class LinkedListNode {
 
-	public int data;
+	int data;
 	public LinkedListNode next;
 	public LinkedListNode prev;
 
