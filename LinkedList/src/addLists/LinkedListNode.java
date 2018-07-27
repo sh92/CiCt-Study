@@ -1,9 +1,13 @@
-package deleteDup;
+package addLists;
 
 public class LinkedListNode {
 
-	public int data;
+	int data;
 	public LinkedListNode next;
+
+	public LinkedListNode() {
+
+	}
 
 	public LinkedListNode(int data) {
 		super();
@@ -14,6 +18,10 @@ public class LinkedListNode {
 		super();
 		this.data = data;
 		this.next = next;
+	}
+
+	public void setNext(LinkedListNode more) {
+		this.next = more;
 	}
 
 }
