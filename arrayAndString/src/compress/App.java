@@ -5,6 +5,40 @@ public class App {
 		String s1 = "aabccccccaa";
 		System.out.println(compressBad(s1));
 		System.out.println(compressBetter(s1));
+		System.out.println(compressAlternate(s1));
+	}
+
+	private static String compressAlternate(String str) {
+		int size = countCompression(str);
+		if (size >= str.length())
+			return str;
+
+		char[] array = new char[size];
+		int index = 0;
+		char last = str.charAt(0);
+		int count = 1;
+		for (int i = 1; i < str.length(); i++) {
+			if (str.charAt(i) == last) {
+				count++;
+			} else {
+				index = setChar(array, last, index, count);
+				last = str.charAt(i);
+				count = 1;
+			}
+		}
+		index = setChar(array, last, index, count);
+		return String.valueOf(array);
+	}
+
+	private static int setChar(char[] array, char c, int index, int count) {
+		array[index] = c;
+		index++;
+		char[] cnt = String.valueOf(count).toCharArray();
+		for (char x : cnt) {
+			array[index] = x;
+			index++;
+		}
+		return index;
 	}
 
 	private static String compressBetter(String str) {
