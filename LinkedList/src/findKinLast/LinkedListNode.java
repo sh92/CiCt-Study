@@ -1,9 +1,9 @@
-package deleteDup;
+package findKinLast;
 
 public class LinkedListNode {
 
 	int data;
-	public LinkedListNode next;
+	LinkedListNode next;
 
 	public LinkedListNode(int data) {
 		super();
@@ -14,6 +14,15 @@ public class LinkedListNode {
 		super();
 		this.data = data;
 		this.next = next;
+	}
+
+	public void printLinkedList() {
+		LinkedListNode temp = this;
+		while (temp != null) {
+			System.out.print(temp.data + " ");
+			temp = temp.next;
+		}
+		System.out.println();
 	}
 
 }
