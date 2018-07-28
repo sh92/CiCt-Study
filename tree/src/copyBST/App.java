@@ -13,6 +13,23 @@ public class App {
 		copyBST(root.right, array);
 	}
 
+	public static boolean checkBST3(TreeNode root) {
+		return checkBST3(root, null, null);
+	}
+
+	private static boolean checkBST3(TreeNode n, Integer min, Integer max) {
+		if (n == null)
+			return true;
+
+		if ((min != null && n.data <= min) || (max != null && n.data > max)) {
+			return false;
+		}
+		if (!checkBST3(n.left, min, n.data) || !checkBST3(n.right, n.data, max)) {
+			return false;
+		}
+		return true;
+	}
+
 	public static Integer last_printed = null;
 
 	public static boolean checkBST2(TreeNode root) {
@@ -57,6 +74,14 @@ public class App {
 		TreeNode root4 = new TreeNode(6);
 		root4.right = new TreeNode(2);
 		System.out.println(checkBST2(root4));
+
+		TreeNode root5 = new TreeNode(6);
+		root5.left = new TreeNode(2);
+		System.out.println(checkBST3(root5));
+
+		TreeNode root6 = new TreeNode(6);
+		root6.right = new TreeNode(2);
+		System.out.println(checkBST3(root6));
 
 	}
 }
