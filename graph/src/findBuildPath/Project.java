@@ -1,7 +1,9 @@
-package findCommonParent;
+package findBuildPath;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import dfsbuildPath.State;
 
 public class Project {
 
@@ -40,6 +42,11 @@ public class Project {
 
 	public void decrementDendencies() {
 		dependencies--;
+	}
+
+	public State getState() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

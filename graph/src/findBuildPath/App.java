@@ -1,4 +1,4 @@
-package findCommonParent;
+package findBuildPath;
 
 import java.util.ArrayList;
 
