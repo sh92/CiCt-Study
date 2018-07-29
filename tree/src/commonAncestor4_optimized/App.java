@@ -1,33 +1,39 @@
-package commonAncestor3;
+package commonAncestor4_optimized;
 
 public class App {
-
 	static TreeNode commonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-		if (!covers(root, p) || !covers(root, q)) {
-			return null;
+		Result r = commonAncestorHelper(root, p, q);
+		if (r.isAncestor) {
+			return r.node;
 		}
-		return ancestorHelper(root, p, q);
+		return null;
 	}
 
-	private static TreeNode ancestorHelper(TreeNode root, TreeNode p, TreeNode q) {
-		if (root == null || root == p || root == q) {
-			return root;
-		}
-		boolean pIsOnLeft = covers(root.left, p);
-		boolean qIsOnLeft = covers(root.left, q);
-		if (pIsOnLeft != qIsOnLeft) {
-			return root;
-		}
-		TreeNode childSide = pIsOnLeft ? root.left : root.right;
-		return ancestorHelper(childSide, p, q);
-	}
-
-	private static boolean covers(TreeNode root, TreeNode p) {
+	private static Result commonAncestorHelper(TreeNode root, TreeNode p, TreeNode q) {
 		if (root == null)
-			return false;
-		if (root == p)
-			return true;
-		return covers(root.left, p) || covers(root.right, p);
+			return new Result(null, false);
+		if (root == p && root == q) {
+			return new Result(root, true);
+		}
+
+		Result rx = commonAncestorHelper(root.left, p, q);
+		if (rx.isAncestor) {
+			return rx;
+		}
+
+		Result ry = commonAncestorHelper(root.right, p, q);
+		if (ry.isAncestor) {
+			return ry;
+		}
+
+		if (rx.node != null && ry.node != null) {
+			return new Result(root, true);
+		} else if (root == p || root == q) {
+			boolean isAncestor = rx.node != null || ry.node != null;
+			return new Result(root, isAncestor);
+		} else {
+			return new Result(rx.node != null ? rx.node : ry.node, false);
+		}
 	}
 
 	public static void main(String[] args) {
